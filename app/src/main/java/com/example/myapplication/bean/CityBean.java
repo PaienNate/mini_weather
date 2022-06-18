@@ -11,7 +11,7 @@ public class CityBean {
     @SerializedName("msg")
     private String msg;
     @SerializedName("data")
-    private List<DataBean> data;
+    private List<Province> province;
 
     public Integer getCode() {
         return code;
@@ -29,21 +29,32 @@ public class CityBean {
         this.msg = msg;
     }
 
-    public List<DataBean> getData() {
-        return data;
+    public List<Province> getProvince() {
+        return province;
     }
 
-    public void setData(List<DataBean> data) {
-        this.data = data;
+    public void setProvince(List<Province> province) {
+        this.province = province;
     }
 
-    public static class DataBean {
+    public static class Province {
+        //添加自增主键
+        private int id;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
         @SerializedName("code")
         private String code;
         @SerializedName("name")
         private String name;
         @SerializedName("pchilds")
-        private List<PchildsBean> pchilds;
+        private List<City> pchilds;
 
         public String getCode() {
             return code;
@@ -61,21 +72,42 @@ public class CityBean {
             this.name = name;
         }
 
-        public List<PchildsBean> getPchilds() {
+        public List<City> getPchilds() {
             return pchilds;
         }
 
-        public void setPchilds(List<PchildsBean> pchilds) {
+        public void setPchilds(List<City> pchilds) {
             this.pchilds = pchilds;
         }
 
-        public static class PchildsBean {
+        public static class City {
+            //添加自增主键
+            private int id;
+            //添加所在省的ID
+            private int provinceId;
+
+            public int getProvinceId() {
+                return provinceId;
+            }
+
+            public void setProvinceId(int provinceId) {
+                this.provinceId = provinceId;
+            }
+
+            public int getId() {
+                return id;
+            }
+
+            public void setId(int id) {
+                this.id = id;
+            }
+
             @SerializedName("code")
             private String code;
             @SerializedName("name")
             private String name;
             @SerializedName("cchilds")
-            private List<CchildsBean> cchilds;
+            private List<County> cchilds;
 
             public String getCode() {
                 return code;
@@ -93,15 +125,36 @@ public class CityBean {
                 this.name = name;
             }
 
-            public List<CchildsBean> getCchilds() {
+            public List<County> getCchilds() {
                 return cchilds;
             }
 
-            public void setCchilds(List<CchildsBean> cchilds) {
+            public void setCchilds(List<County> cchilds) {
                 this.cchilds = cchilds;
             }
 
-            public static class CchildsBean {
+            public static class County {
+                //添加自增主键
+                private int id;
+                //添加cityId
+                private int cityId;
+
+                public int getCityId() {
+                    return cityId;
+                }
+
+                public void setCityId(int cityId) {
+                    this.cityId = cityId;
+                }
+
+                public int getId() {
+                    return id;
+                }
+
+                public void setId(int id) {
+                    this.id = id;
+                }
+
                 @SerializedName("code")
                 private String code;
                 @SerializedName("name")

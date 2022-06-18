@@ -18,6 +18,26 @@
         android:layout_toLeftOf="@id/search_iv_submit"
         android:hint="搜索国内城市:"
         android:background="@drawable/searchbg"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_et"
+        android:layout_alignStart="@+id/search_et"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_toStartOf="@+id/search_iv_submit"
+        android:background="#B5FFFFFF"
+        android:rotation="0"
+        android:rotationY="0"
+        android:scrollbars="horizontal" />
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recy"-->
+<!--        android:visibility="gone"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:layout_marginTop="3dp"/>-->
     <TextView
         android:id="@+id/search_tv"
         android:layout_below="@id/search_et"
@@ -27,10 +47,13 @@
         android:text="热门城市"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
     <GridView
         android:id="@+id/search_gv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/search_tv"
         android:numColumns="5"></GridView>
+
+
 </RelativeLayout>
