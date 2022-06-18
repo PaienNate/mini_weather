@@ -59,11 +59,15 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //插入这个city_weather的碎片
         View view = inflater.inflate(R.layout.fragment_city_weather, container, false);
+        //初始化View
         initView(view);
+        //根据设定调整北京图片
         exchangeBg();
 //        可以通过activity传值获取到当前fragment加载的是那个地方的省份和天气情况
         Bundle bundle = getArguments();
+        //获取activity的city值
         String provice_city = bundle.getString("city");
 //        获取省份
         if(provice_city.split(" ").length>1)
