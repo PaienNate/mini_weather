@@ -25,7 +25,7 @@ public class RetrofitHelper {
     private Retrofit weatherRetrofit;
     public static String app_id = "wpqgjkqkqnmqt3gt";
     public static String app_secret = "Q1NqMnl6ZlZyRkNESUJDMWZ0ZjZJdz09";
-    private WeatherService weatherService;
+    private CityService cityService;
     OkHttpClient.Builder builder;
 
     /**
@@ -50,15 +50,15 @@ public class RetrofitHelper {
                 .client(builder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl(WeatherService.BASE_URL)
+                .baseUrl(CityService.BASE_URL)
                 .build();
         //这里创建了对应的retrofit数据，作为services
-        weatherService = weatherRetrofit.create(WeatherService.class);
+        cityService = weatherRetrofit.create(CityService.class);
     }
     //获取城市信息 - 底层方法
     public void getCityList(Observer<CityBean.Province> observers)
     {//appid,secret
-        weatherService.getWebProvinceList(app_id,app_secret)
+        cityService.getWebProvinceList(app_id,app_secret)
                 .map(new Function<CityBean, List<CityBean.Province>>() {
 
                     @Override
