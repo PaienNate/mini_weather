@@ -1,8 +1,13 @@
 package com.example.myapplication;
 
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -12,15 +17,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+
 import com.example.myapplication.base.BaseFragment;
 import com.example.myapplication.bean.WeatherBean;
 import com.example.myapplication.db.DBManager;
 import com.google.gson.Gson;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import androidx.fragment.app.Fragment;
-
-import static android.content.Context.MODE_PRIVATE;
+import java.util.Date;
 
 
 /**
@@ -28,6 +38,7 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class CityWeatherFragment extends BaseFragment implements View.OnClickListener{
     TextView tempTv,cityTv,conditionTv,windTv,tempRangeTv,dateTv,clothIndexTv,carIndexTv,coldIndexTv,sportIndexTv,raysIndexTv,tipTv,umbrellaTv;
+    //根据时间换图标
     ImageView dayIv;
     LinearLayout futureLayout;
     ScrollView outLayout;
@@ -35,6 +46,7 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
     String url2 = "&city=";
     String city;
     String provice;
+
     private WeatherBean.DataBean.IndexBean index;
     private SharedPreferences pref;
     private int bgNum;
@@ -113,11 +125,54 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         }
 
     }
+    //判断是白天还是晚上
+    public boolean getCurrentTime(){
+        SimpleDateFormat sdf = new SimpleDateFormat("HH");
+        String hour= sdf.format(new Date());
+        int k  = Integer.parseInt(hour)  ;
+        if ((k>=0 && k<6) ||(k >=18 && k<24)){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private Bitmap getImageFromAssetsFile(String fileName)
+    {
+        Bitmap image = null;
+        AssetManager am = getResources().getAssets();
+        try
+        {
+            InputStream is = am.open(fileName);
+            image = BitmapFactory.decodeStream(is);
+            is.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        return image;
+
+    }
     private void parseShowData(String result) throws ParseException {
 //        使用gson解析数据
         WeatherBean weatherBean = new Gson().fromJson(result, WeatherBean.class);
         WeatherBean.DataBean resultsBean = weatherBean.getData();
         index = resultsBean.getIndex();
+        //设置天气图标,首先获取时间，判断早晚
+        WeatherBean.DataBean.ObserveBean observeBean = weatherBean.getData().getObserve();
+        String weather_code = observeBean.getWeather_code();
+        if (getCurrentTime()){
+            //然后获取weatherBean里的天气代码，拼凑名称
+            Toast.makeText(getActivity(),"晚上啦，早点休息哦~",Toast.LENGTH_SHORT).show();
+            dayIv.setImageBitmap(getImageFromAssetsFile("night_" + weather_code + ".png"));
+        }else {
+            Toast.makeText(getActivity(), "现在是白天哦，心情愉快~", Toast.LENGTH_SHORT).show();
+            dayIv.setImageBitmap(getImageFromAssetsFile("day_" + weather_code + ".png"));
+
+        }
+        //dayIv
 //        设置TextView
         cityTv.setText(city);
         tipTv.setText(resultsBean.getTips().getObserve().get_$0());

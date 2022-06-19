@@ -8,11 +8,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/drawable/dot_selector.xml" value="0.1" />
+        <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/drawable/welcomimg_bg.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/activity_city_manager.xml" value="0.2" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/activity_delete_city.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/activity_main.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/activity_more.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/activity_search_city.xml" value="0.264" />
+        <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/activity_welcome.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/fragment_city_weather.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/item_city.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/item_city_manager.xml" value="0.1" />

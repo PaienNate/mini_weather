@@ -68,12 +68,12 @@
                 />
 
             <ImageView
+                android:id="@+id/frag_iv_today"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:id="@+id/frag_iv_today"
-                android:scaleType="centerCrop"
                 android:layout_alignParentRight="true"
-                android:src="@mipmap/icon"/>
+                android:scaleType="centerCrop"
+                android:src="@mipmap/icon" />
         </RelativeLayout>
         <!-- 用于显示未来三天的天气情况-->
         <LinearLayout
