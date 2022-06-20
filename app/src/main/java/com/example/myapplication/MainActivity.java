@@ -1,8 +1,5 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,7 +10,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
 import com.example.myapplication.city_manager.CityManagerActivity;
+import com.example.myapplication.city_manager.fragment.CityFragmentPagerAdapter;
+import com.example.myapplication.city_manager.fragment.CityWeatherFragment;
 import com.example.myapplication.db.DBManager;
 
 import java.util.ArrayList;

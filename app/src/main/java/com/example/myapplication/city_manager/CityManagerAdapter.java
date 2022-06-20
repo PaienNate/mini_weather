@@ -53,7 +53,7 @@ public class CityManagerAdapter extends BaseAdapter{
         DatabaseBean bean = mDatas.get(position);
         holder.cityTv.setText(bean.getCity());
         WeatherBean weatherBean = new Gson().fromJson(bean.getContent(), WeatherBean.class);
-//        获取今日天气情况
+        //获取今日天气情况
         WeatherBean.DataBean.ObserveBean dataBean = weatherBean.getData().getObserve();
         holder.conTv.setText("天气 : "+dataBean.getWeather_short());
         holder.currentTempTv.setText(dataBean.getDegree()+"°C");
@@ -66,7 +66,7 @@ public class CityManagerAdapter extends BaseAdapter{
         return convertView;
     }
 
-    //    时间格式化
+    //时间格式化
     private String changeTime(String update_time) throws ParseException {
         SimpleDateFormat sf1 = new SimpleDateFormat("yyyyMMddHHmm");
         SimpleDateFormat sf2 =new SimpleDateFormat("yyyy-MM-dd HH:mm");

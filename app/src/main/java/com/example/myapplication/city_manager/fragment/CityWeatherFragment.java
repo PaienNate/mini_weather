@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.city_manager.fragment;
 
 
 import static android.content.Context.MODE_PRIVATE;
@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.R;
 import com.example.myapplication.base.BaseFragment;
 import com.example.myapplication.bean.WeatherBean;
 import com.example.myapplication.db.DBManager;
