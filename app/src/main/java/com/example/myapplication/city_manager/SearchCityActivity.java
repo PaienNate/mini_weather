@@ -4,12 +4,10 @@ import static com.example.myapplication.db.DBManager.FindProvince;
 import static com.example.myapplication.db.DBManager.deleteAllCity;
 import static com.example.myapplication.db.DBManager.getProvince;
 import static com.example.myapplication.db.DBManager.getProvinceList;
-import static com.example.myapplication.db.DBManager.loadCities;
 import static com.example.myapplication.db.DBManager.loadSearchCities;
 import static com.example.myapplication.db.DBManager.saveNewProvince;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -59,7 +57,6 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
     private List<CityBean.Province.City> cityBeanList = new ArrayList<>();
     private Observer<CityBean.Province> cityBeanObserver;
     private ProgressDialog progressDialog;
-    Context thesecon = this;
     private LinearLayoutManager linearLayoutManager;
 
     @Override

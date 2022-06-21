@@ -7,9 +7,9 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 
 import com.example.myapplication.R;
+import com.example.myapplication.city_manager.CityManagerActivity;
 import com.example.myapplication.service.GetWeatherService;
 import com.example.myapplication.service.WidgetGridService;
-import com.example.myapplication.widget.config.WidgetAction;
 
 
 //第五步：实现小组件更新的类
@@ -51,17 +51,17 @@ public class UpdateWidget {
              *  显示Topic及点击事件,通过Intent启动Activity，PendingIntent.getActivity();
              */
             //设置背景图
-            remoteViews.setImageViewResource(R.id.widget_image, R.drawable.ss_bg);
+            //remoteViews.setImageViewResource(R.id.widget_image, R.drawable.ss_bg);
             //创建一个跳转到MainActivity的Intent
-            Intent topicIntent = new Intent(context, WeatherWidgetActivity.class);
+            //Intent topicIntent = new Intent(context, WeatherWidgetActivity.class);
             //设置这个Intent的行为是请求“GOD_START_ACTIVITY”
-            topicIntent.setAction(WidgetAction.GOD_START_ACTIVITY);
+            //topicIntent.setAction(WidgetAction.GOD_START_ACTIVITY);
             //设置它的标记，当请求过去时，销毁之前的activity。
-            topicIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+           // topicIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             //绑定到PendingIntent上
-            PendingIntent pendingIntentActivity = pendingIntent.getActivity(context, 0, topicIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            //PendingIntent pendingIntentActivity = pendingIntent.getActivity(context, 0, topicIntent, PendingIntent.FLAG_UPDATE_CURRENT);
             //给图片设置该请求标记
-            remoteViews.setOnClickPendingIntent(R.id.widget_image, pendingIntentActivity);
+           // remoteViews.setOnClickPendingIntent(R.id.widget_image, pendingIntentActivity);
 
             /**
              * @author David  created at 2016/8/11 17:37
@@ -92,9 +92,9 @@ public class UpdateWidget {
         //有了数据之后，它会自动去掉
         remoteViews.setEmptyView(R.id.widget_grid, R.id.widget_empty_view);
         //设定一个去主Activity的Intent
-        Intent intentEvent = new Intent(context, WeatherWidgetActivity.class);
+        Intent intentEvent = new Intent(context, CityManagerActivity.class);
         //设置其行为动作是请求GOD_GRID
-        intentEvent.setAction(WidgetAction.GOD_GRID);
+        //intentEvent.setAction(WidgetAction.GOD_GRID);
         //在到了之后销毁之前的Activity
         intentEvent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         //设置PendingIntent

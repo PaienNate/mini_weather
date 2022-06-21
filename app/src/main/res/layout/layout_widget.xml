@@ -13,8 +13,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="God David"
-        android:textColor="#0000CD"
+        android:text="天气实时预览"
+        android:textColor="@color/light_blue_50"
         android:textSize="25dp" />
 
 
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/widget_title"
-        android:background="#fff">
+        >
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -43,7 +43,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dp"
                 android:layout_marginRight="1dp"
-                android:background="#912CEE"
+                android:background="#4F00574B"
                 android:columnWidth="150dp"
                 android:gravity="center"
                 android:horizontalSpacing="1dp"
