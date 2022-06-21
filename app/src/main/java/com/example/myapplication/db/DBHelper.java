@@ -3,7 +3,6 @@ package com.example.myapplication.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
 public class DBHelper extends SQLiteOpenHelper{
 
@@ -30,6 +29,7 @@ public class DBHelper extends SQLiteOpenHelper{
             + "county_name text, "
             + "county_code text, "
             + "city_id integer)";
+
 
     public DBHelper(Context context){
         super(context,"forecast.db",null,1);

@@ -11,28 +11,32 @@
         android:scaleType="fitXY"
         android:src="@drawable/abc_vector_test"/>
 
+
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/welcomimg_bg"/>
-
+        android:background="@drawable/welcomimg_bg" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
+        android:layout_height="65dp"
+        android:layout_above="@+id/welcome_icon"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="467dp"
+        android:layout_marginBottom="58dp"
         android:gravity="center"
-        android:text="xialong"
+        android:text="迷你天气系统"
         android:textColor="@android:color/white"
-        android:textSize="23sp"/>
+        android:textSize="35sp" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/google"
+        android:id="@+id/welcome_icon"
+        android:layout_width="136dp"
+        android:layout_height="81dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="60dp"
         android:layout_centerInParent="true"
+        android:layout_marginBottom="60dp"
+        android:src="@mipmap/google"
         app:tint="@android:color/white" />
+
 </RelativeLayout>

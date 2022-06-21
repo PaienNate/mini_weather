@@ -7,12 +7,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.myapplication.R;
 import com.example.myapplication.db.DBManager;
+import com.example.myapplication.service.GetWeatherService;
 
 import java.util.ArrayList;
 import java.util.List;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class DeleteCityActivity extends AppCompatActivity implements View.OnClickListener{
     ImageView errorIv,rightIv;
@@ -58,6 +60,8 @@ public class DeleteCityActivity extends AppCompatActivity implements View.OnClic
                     String city = deleteCitys.get(i);
 //                    调用删除城市的函数
                     int i1 = DBManager.deleteInfoByCity(city);
+                    //删除完毕后要提示小组件也更新一下
+                        GetWeatherService.notifyDatabaseUpdate();
                 }
 //                删除成功返回上一级页面
                 finish();

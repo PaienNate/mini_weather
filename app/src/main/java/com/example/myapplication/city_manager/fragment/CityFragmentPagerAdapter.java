@@ -1,12 +1,12 @@
-package com.example.myapplication;
+package com.example.myapplication.city_manager.fragment;
 
-
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+
+import java.util.List;
 
 public class CityFragmentPagerAdapter extends FragmentStatePagerAdapter {
     List<Fragment>fragmentList;

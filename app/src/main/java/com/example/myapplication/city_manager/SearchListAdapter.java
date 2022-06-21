@@ -1,7 +1,6 @@
 package com.example.myapplication.city_manager;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
 
 import java.util.List;
-import java.util.Map;
 
 public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.ViewHolder> {
     public View searchView;
@@ -62,8 +60,9 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
             @Override
             public void onClick(View v) {
                 //将值传好
-                context.searchEt.setText(mDatas.get(i));
                 Toast.makeText(context, "您选择了："+mDatas.get(i), Toast.LENGTH_SHORT).show();
+                //首先显示是哪个，然后再设置，不然就会引发变动
+                context.searchEt.setText(mDatas.get(i));
             }
         });
     }

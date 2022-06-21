@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -11,6 +12,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <!--设置receiver-->
+        <receiver
+            android:name=".widget.MyAppWidgetProvider"
+            android:exported="true"
+            android:label="God David">
+            <intent-filter>
+                <!--AppWidget更新注册广播-->
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <!--AppWidget交互事件广播-->
+                <action android:name="android.appwidget.action.GOD_DAVID_GTIDVIEW" />
+                <action android:name="android.appwidget.action.GOD_DAVID_REFRESH" />
+                <action android:name="android.appwidget.action.GOD_DAVID_START_ACTIVITY" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/app_widget_provider" />
+        </receiver>
+        <!--设置结束 -->
+        <!--注册Service服务-->
+        <service
+            android:name=".service.WidgetGridService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+        <service android:name=".service.GetWeatherService">
+            <intent-filter>
+                <action android:name="android.appwidget.action.GOD_DAVID_MYSERVICE"></action>
+            </intent-filter>
+        </service>
+        <!--注册结束 -->
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,11 +47,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
         <activity android:name=".city_manager.CityManagerActivity" />
         <activity android:name=".city_manager.SearchCityActivity" />
         <activity android:name=".city_manager.DeleteCityActivity" />
-        <activity android:name=".MoreActivity"></activity>
+        <activity android:name=".widget.WeatherWidgetActivity" />
+        <activity android:name=".MoreActivity" />
     </application>
 
 </manifest>

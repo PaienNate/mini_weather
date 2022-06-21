@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.city_manager.fragment;
 
 
 import static android.content.Context.MODE_PRIVATE;
@@ -21,9 +21,11 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.R;
 import com.example.myapplication.base.BaseFragment;
 import com.example.myapplication.bean.WeatherBean;
 import com.example.myapplication.db.DBManager;
+import com.example.myapplication.service.GetWeatherService;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -110,7 +112,10 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         if (i<=0) {
 //            更新数据库失败，说明没有这条城市信息，增加这个城市记录
             DBManager.addCityInfo(city,result);
+            //小组件：更新后，提示小组件跟着更新
+
         }
+        GetWeatherService.notifyDatabaseUpdate();
     }
     @Override
     public void onError(Throwable ex, boolean isOnCallback) {
