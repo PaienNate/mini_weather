@@ -109,12 +109,11 @@ public class WidgetGridService extends RemoteViewsService {
 
 
         //从隔壁抄一个转换样式的函数过来
-        private String changeTime(String update_time)  {
+        private String changeTimeToWidget(String update_time)  {
             try{
-
-
+                //不要年份只要月份
             SimpleDateFormat sf1 = new SimpleDateFormat("yyyyMMddHHmm");
-            SimpleDateFormat sf2 =new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            SimpleDateFormat sf2 =new SimpleDateFormat("MM-dd HH:mm");
             String sfstr = "";
             sfstr = sf2.format(sf1.parse(update_time));
             return sfstr;
@@ -175,7 +174,7 @@ public class WidgetGridService extends RemoteViewsService {
                 String cityName = weatherList.get(position).getCity();
                 String tempature = weatherBean.getData().getObserve().getDegree();
                 String weather_code = weatherBean.getData().getObserve().getWeather_code();
-                String update_time = changeTime(weatherBean.getData().getObserve().getUpdate_time());
+                String update_time = changeTimeToWidget(weatherBean.getData().getObserve().getUpdate_time());
                 //设置图片等信息
                 if (getCurrentTime()){
                     //然后获取weatherBean里的天气代码，拼凑名称
@@ -184,8 +183,8 @@ public class WidgetGridService extends RemoteViewsService {
                     remoteViews.setImageViewBitmap(R.id.item_image,getImageFromAssetsFile("day_" + weather_code + ".png"));
                 }
                 remoteViews.setTextViewText(R.id.item_text,cityName);
-                remoteViews.setTextViewText(R.id.widget_tempature,tempature);
-                remoteViews.setTextViewText(R.id.widget_updatetime,update_time);
+                remoteViews.setTextViewText(R.id.widget_tempature,tempature + "°C");
+                remoteViews.setTextViewText(R.id.widget_updatetime,update_time + "更新");
                 //设置跳转，跳转到管理界面
                 Intent intent = new Intent(getApplicationContext(), CityManagerActivity.class);
                 remoteViews.setOnClickFillInIntent(R.id.item_widget, intent);
