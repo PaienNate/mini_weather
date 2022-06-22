@@ -14,7 +14,6 @@ import android.widget.RemoteViewsService;
 
 import com.example.myapplication.R;
 import com.example.myapplication.bean.WeatherBean;
-import com.example.myapplication.bean.WidgetEntity;
 import com.example.myapplication.city_manager.CityManagerActivity;
 import com.example.myapplication.db.DatabaseBean;
 import com.google.gson.Gson;
@@ -42,7 +41,6 @@ public class WidgetGridService extends RemoteViewsService {
         private Context context;
         private int appWidgetId;
         private List<DatabaseBean> weatherList = new ArrayList<>();
-        private List<WidgetEntity.NewslistBean> newslist = new ArrayList<>();
         //初始化，获取到对应的小组件ID
         public GridRemoteViewFactory(Context context, Intent intent) {
             this.context = context;

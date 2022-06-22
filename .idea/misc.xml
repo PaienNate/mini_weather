@@ -11,6 +11,8 @@
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/drawable-hdpi/bg_item_text.xml" value="0.1835" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/drawable/bg_widget.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/drawable/dot_selector.xml" value="0.1" />
+        <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/drawable/frag_bg.xml" value="0.1235" />
+        <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/drawable/hotbg.xml" value="0.1235" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/drawable/welcomimg_bg.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/activity_city_manager.xml" value="0.2" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/activity_covid.xml" value="0.264" />
@@ -22,7 +24,7 @@
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/activity_welcome.xml" value="0.176" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/activity_widget.xml" value="0.12335359675785208" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/content_covid19.xml" value="0.1" />
-        <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/fragment_city_weather.xml" value="0.1" />
+        <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/fragment_city_weather.xml" value="0.4" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/fragment_first.xml" value="0.15625" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/fragment_item.xml" value="0.15625" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/fragment_item_list.xml" value="0.15625" />
@@ -38,19 +40,6 @@
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/weather_app_widget.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/weather_first_widget.xml" value="0.264" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/xml/app_widget_provider.xml" value="0.1" />
-        <entry key="..\:/class/andpro/app/src/main/res/layout/activity_city_manager.xml" value="0.17916666666666667" />
-        <entry key="..\:/class/andpro/app/src/main/res/layout/activity_covid19.xml" value="0.17916666666666667" />
-        <entry key="..\:/class/andpro/app/src/main/res/layout/activity_delete_city.xml" value="0.17916666666666667" />
-        <entry key="..\:/class/andpro/app/src/main/res/layout/activity_main.xml" value="0.17916666666666667" />
-        <entry key="..\:/class/andpro/app/src/main/res/layout/activity_more.xml" value="0.17916666666666667" />
-        <entry key="..\:/class/andpro/app/src/main/res/layout/activity_search_city.xml" value="0.17916666666666667" />
-        <entry key="..\:/class/andpro/app/src/main/res/layout/content_covid19.xml" value="0.17916666666666667" />
-        <entry key="..\:/class/andpro/app/src/main/res/layout/fragment_city_weather.xml" value="0.17916666666666667" />
-        <entry key="..\:/class/andpro/app/src/main/res/layout/item_city_manager.xml" value="0.17916666666666667" />
-        <entry key="..\:/class/andpro/app/src/main/res/layout/item_citylist.xml" value="0.17916666666666667" />
-        <entry key="..\:/class/andpro/app/src/main/res/layout/item_deletecity.xml" value="0.17916666666666667" />
-        <entry key="..\:/class/andpro/app/src/main/res/layout/item_hotcity.xml" value="0.17916666666666667" />
-        <entry key="..\:/class/andpro/app/src/main/res/layout/item_main_center.xml" value="0.17916666666666667" />
       </map>
     </option>
   </component>
