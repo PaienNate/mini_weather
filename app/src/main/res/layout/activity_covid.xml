@@ -1,33 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".covid_19.Covid19Activity">
+    android:layout_height="wrap_content"
+    android:background="@mipmap/bg_feiyan"
+    android:id="@+id/out_layout">
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <LinearLayout
+        android:id="@+id/covid_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
-        android:layout_width="413dp"
-        android:layout_height="209dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@mipmap/feiyan_area" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="245dp"
+            android:background="@mipmap/feiyan_area"
+            android:padding="10dp">
 
-    <ListView
-        android:layout_width="409dp"
-        android:layout_height="520dp"
-        android:layout_marginTop="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+            <TextView
+                android:id="@+id/covid_tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="新型冠状病毒肺炎"
+                android:textColor="@color/light_yellow_1"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
-    </ListView>
+            <TextView
+                android:id="@+id/covid_tv_city"
+                style="@style/todaytext"
+                android:layout_below="@id/covid_tv_title"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/covid_city"
+                android:text="浙江"
+                android:textColor="#0055FF"
+                android:textSize="35sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/covid_tv_now"
+                style="@style/todaytext"
+                android:layout_alignBottom="@id/covid_tv_city"
+                android:layout_toRightOf="@id/covid_tv_city"
+                android:text="实时疫情"
+                android:textColor="#fff"
+                android:textSize="35sp" />
+
+            <TextView
+                android:id="@+id/frag_tv_tips"
+                style="@style/todaytext"
+
+                android:layout_below="@id/covid_tv_city"
+                android:layout_marginTop="34dp"
+                android:text="数据来源： 国家及各地卫健委每日信息发布"
+
+                android:textColor="#fff" />
+
+
+        </RelativeLayout>
+        <!-- 用于表示指数信息的线性布局-->
+        <LinearLayout
+            android:id="@+id/frag_index_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            android:layout_margin="10dp"
+            android:padding="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#668EE1DF"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/covid_index_tv_addY"
+                    style="@style/indextext"
+                    android:text="+0"
+                    android:textSize="30sp"
+                    android:drawableBottom="@mipmap/bentuquezhen"/>
+                <ImageView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    />
+                <TextView
+                    android:id="@+id/covid_index_tv_addN"
+                    style="@style/indextext"
+                    android:text="+0"
+                    android:textSize="30sp"
+                    android:drawableBottom="@mipmap/bentuwuzhengzhuang"/>
+                <ImageView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#EFF4F1"/>
+                <TextView
+                    android:id="@+id/covid_index_tv_addI"
+                    style="@style/indextext"
+                    android:text="+1"
+                    android:textSize="30sp"
+                    android:drawableBottom="@mipmap/jingwaishuru"/>
+                <ImageView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#EFF4F1"/>
+                <TextView
+                    android:id="@+id/covid_index_tv_addD"
+                    style="@style/indextext"
+                    android:text="+1"
+                    android:textSize="30sp"
+                    android:drawableBottom="@mipmap/siwangbingli"/>
+            </LinearLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#F6F5F5"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#66E3B3CB">
+                <TextView
+                    android:id="@+id/covid_index_tv_H"
+                    style="@style/indextext"
+                    android:text="0"
+                    android:textSize="30sp"
+                    android:drawableBottom="@mipmap/gaofengxiandiqu"/>
+                <ImageView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    />
+                <TextView
+                    android:id="@+id/covid_index_tv_M"
+                    style="@style/indextext"
+                    android:text="0"
+                    android:textSize="30sp"
+                    android:drawableBottom="@mipmap/zhongfengxiandiqu"/>
+                <ImageView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#EFF4F1"/>
+                <TextView
+                    android:id="@+id/covid_index_tv_N"
+                    style="@style/indextext"
+                    android:text="17"
+                    android:textSize="30sp"
+                    android:drawableBottom="@mipmap/xianyouquezhen"/>
+                <ImageView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#EFF4F1"/>
+                <TextView
+                    android:id="@+id/covid_index_tv_A"
+                    style="@style/indextext"
+                    android:text="3150"
+                    android:textSize="30sp"
+                    android:drawableBottom="@mipmap/leijiquezhen"/>
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/covid_index_tv_subao"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+
+            android:text="  疫情"
+            android:textStyle="bold"
+            android:drawableRight="@mipmap/icon_subao"
+            android:textSize="30sp" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DCDCDC"/>
+        <ListView
+            android:id="@+id/subao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"></ListView>
+    </LinearLayout>
+
+</ScrollView>
