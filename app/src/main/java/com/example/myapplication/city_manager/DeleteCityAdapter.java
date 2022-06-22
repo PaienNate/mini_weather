@@ -48,6 +48,7 @@ public class DeleteCityAdapter extends BaseAdapter{
         }
         final String city = mDatas.get(position);
         holder.tv.setText(city);
+//        删除
         holder.iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

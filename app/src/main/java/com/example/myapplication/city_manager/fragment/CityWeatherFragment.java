@@ -165,6 +165,8 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         WeatherBean weatherBean = new Gson().fromJson(result, WeatherBean.class);
         WeatherBean.DataBean resultsBean = weatherBean.getData();
         index = resultsBean.getIndex();
+
+
         //设置天气图标,首先获取时间，判断早晚
         WeatherBean.DataBean.ObserveBean observeBean = weatherBean.getData().getObserve();
         String weather_code = observeBean.getWeather_code();
@@ -184,7 +186,9 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
 //        获取今日天气情况
         WeatherBean.DataBean.ObserveBean todayDataBean = resultsBean.getObserve();
         String time = changeTime(todayDataBean.getUpdate_time());
+
         dateTv.setText("发布时间  "+time);
+
         windTv.setText("湿度 "+todayDataBean.getHumidity()+"%");
         tempRangeTv.setText("气压  "+todayDataBean.getPressure()+"hPa");
         conditionTv.setText(todayDataBean.getWeather_short());
@@ -192,6 +196,7 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         tempTv.setText(todayDataBean.getDegree()+"°C");
 //        获取未来三天的天气情况，加载到layout当中
         WeatherBean.DataBean.Forecast24hBean futureList = resultsBean.getForecast_24h();
+
         View itemView = LayoutInflater.from(getActivity()).inflate(R.layout.item_main_center, null);
         itemView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         futureLayout.addView(itemView);
@@ -245,6 +250,7 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
     private void initView(View view) {
 //        用于初始化控件操作
         tipTv  = view.findViewById(R.id.frag_tv_tips);
+
         tempTv = view.findViewById(R.id.frag_tv_currenttemp);
         cityTv = view.findViewById(R.id.frag_tv_city);
         conditionTv = view.findViewById(R.id.frag_tv_condition);
@@ -256,8 +262,10 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         coldIndexTv = view.findViewById(R.id.frag_index_tv_cold);
         sportIndexTv = view.findViewById(R.id.frag_index_tv_sport);
         raysIndexTv = view.findViewById(R.id.frag_index_tv_rays);
+
         dayIv = view.findViewById(R.id.frag_iv_today);
         futureLayout = view.findViewById(R.id.frag_center_layout);
+
         outLayout = view.findViewById(R.id.out_layout);
         umbrellaTv = view.findViewById(R.id.frag_index_tv_umbrella);
 //        设置点击事件的监听

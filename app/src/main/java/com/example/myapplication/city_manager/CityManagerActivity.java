@@ -36,6 +36,7 @@ public class CityManagerActivity extends AppCompatActivity implements View.OnCli
         cityLv.setAdapter(adapter);
     }
 /*  获取数据库当中真实数据源，添加到原有数据源当中，提示适配器更新*/
+//    重新获取焦点，重新设置数据源
     @Override
     protected void onResume() {
         super.onResume();

@@ -53,12 +53,13 @@
                 android:layout_alignBottom="@id/frag_tv_wind"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"/>
+
             <TextView
                 android:id="@+id/frag_tv_temprange"
                 style="@style/todaytext"
-                android:text="气压 1003hPa"
+                android:layout_alignBottom="@id/frag_tv_wind"
                 android:layout_toRightOf="@id/frag_tv_line1"
-                android:layout_alignBottom="@id/frag_tv_wind"/>
+                android:text="气压 1003hPa" />
             <TextView
                 android:id="@+id/frag_tv_tips"
                 style="@style/todaytext"
