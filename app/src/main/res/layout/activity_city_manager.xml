@@ -36,6 +36,7 @@
         android:layout_height="1dp"
         android:background="#DCDCDC"
         android:layout_below="@id/city_top_layout"/>
+
     <ListView
         android:id="@+id/city_lv"
         android:layout_width="match_parent"

@@ -15,6 +15,7 @@ public class DBManager {
     /* 初始化数据库信息*/
     public static void initDB(Context context){
         DBHelper dbHelper = new DBHelper(context);
+        //database全局对象
         database = dbHelper.getWritableDatabase();
     }
     /* 查找数据库当中城市列表*/
@@ -59,6 +60,7 @@ public class DBManager {
     }
 
     /* 查询数据库当中的全部信息*/
+//    protected void onResume() {
     public static List<DatabaseBean>queryAllInfo(){
         Cursor cursor = database.query("info", null, null, null, null, null, null);
         List<DatabaseBean>list = new ArrayList<>();

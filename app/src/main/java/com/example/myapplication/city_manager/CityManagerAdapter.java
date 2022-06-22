@@ -43,6 +43,7 @@ public class CityManagerAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
+        //没有能够被复用的view 创建对象
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_city_manager,null);
             holder = new ViewHolder(convertView);

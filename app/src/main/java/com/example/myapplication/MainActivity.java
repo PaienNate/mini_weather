@@ -126,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        创建小圆点 ViewPager页面指示器的函数
         for (int i = 0; i < fragmentList.size(); i++) {
             ImageView pIv = new ImageView(this);
+            //背景
             pIv.setImageResource(R.mipmap.a1);
             pIv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) pIv.getLayoutParams();
@@ -133,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             imgList.add(pIv);
             pointLayout.addView(pIv);
         }
+        //最后一个被选中
         imgList.get(imgList.size()-1).setImageResource(R.mipmap.a2);
     }
 

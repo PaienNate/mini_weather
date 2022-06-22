@@ -3,13 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp">
+
     <ImageView
         android:id="@+id/search_iv_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="5dp"
-        android:src="@mipmap/icon_search"/>
+        android:src="@mipmap/icon_search" />
     <EditText
         android:id="@+id/search_et"
         android:layout_width="match_parent"

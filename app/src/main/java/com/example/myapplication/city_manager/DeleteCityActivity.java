@@ -30,7 +30,9 @@ public class DeleteCityActivity extends AppCompatActivity implements View.OnClic
         errorIv = findViewById(R.id.delete_iv_error);
         rightIv = findViewById(R.id.delete_iv_right);
         deleteLv = findViewById(R.id.delete_lv);
+
         mDatas = DBManager.queryAllCityName();
+
         deleteCitys = new ArrayList<>();
 //        设置点击监听事件
         errorIv.setOnClickListener(this);
