@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,6 +31,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.api.RetrofitHelper;
 import com.example.myapplication.base.BaseActivity;
 import com.example.myapplication.bean.CityBean;
+import com.example.myapplication.bean.Ip2CityBean;
 import com.example.myapplication.bean.WeatherBean;
 import com.google.gson.Gson;
 
@@ -45,24 +47,29 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
     GridView searchGv;
     RecyclerView searchList;
     TextView searchTv;
-    //没有找到合适的热门城市接口,暂时写死
-    String[] hotCitys = {"北京市"};
+    //没有找到合适的热门城市接口,默认改一下改成“第一个是IP定位，剩下的是写死的热门”
+    //添加IP对应的城市,使用栈结构，后进去的在前面，这样IP永远在前面
+    List<String> hotCitys = new ArrayList<>();
     private ArrayAdapter adapter;
     String url1 = "https://wis.qq.com/weather/common?source=pc&weather_type=observe|index|rise|alarm|air|tips|forecast_24h&province=";
     String url2 = "&city=";
     String city;
     String provice;
-    List<String> test = new ArrayList<>();
+    List<String> stringList = new ArrayList<>();
     SearchListAdapter searchListAdapter;
     private List<CityBean.Province.City> cityBeanList = new ArrayList<>();
     private Observer<CityBean.Province> cityBeanObserver;
+    private Observer<Ip2CityBean> ip2CityBeanObserver;
     private ProgressDialog progressDialog;
     private LinearLayoutManager linearLayoutManager;
+    //添加Ip2CityBean，因为接口不同，导致有概率无法查找到对应的省
+    private Ip2CityBean ip2CityBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //创建时
         super.onCreate(savedInstanceState);
+        hotCitys.add("北京市");
         //设置基础View
         setContentView(R.layout.activity_search_city);
         //获取View
@@ -73,12 +80,12 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
         searchList = findViewById(R.id.search_list);
         //加载进度条
         showProgressDialog();
+        //加载CityList，做准备
         getCityList();
-
         //提升到最高
         searchList.bringToFront();
         //设置adapter和对应的数据（默认是空的）
-        searchListAdapter = new SearchListAdapter(this, test);
+        searchListAdapter = new SearchListAdapter(this, stringList);
         searchList.setAdapter(searchListAdapter);
         linearLayoutManager = new LinearLayoutManager(this);
         searchList.setLayoutManager(linearLayoutManager);
@@ -92,10 +99,10 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
         //为搜索添加监听事件
         searchEt.addTextChangedListener(new TextWatcher() {
             @Override
+            //修改之前，不用管
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//修改之前，不用管
-            }
 
+            }
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 //如果检测到输入框是空的
@@ -110,9 +117,9 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
                     searchTv.setVisibility(View.INVISIBLE);
                     searchList.setVisibility(View.VISIBLE);
                     //传输数据
-                    test.clear();
+                    stringList.clear();
                     for (CityBean.Province.City mycity : loadSearchCities(searchEt.getText().toString())) {
-                        test.add(mycity.getName());
+                        stringList.add(mycity.getName());
                     }
                     //默认每次搜索，都不会有很好的收益……
                     searchListAdapter.notifyDataSetChanged();
@@ -127,8 +134,6 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
         });
         searchGv.setAdapter(adapter);
         setListener();
-
-
     }
 
 
@@ -144,7 +149,6 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
 
             @Override
             public void onNext(CityBean.Province province) {
-
                 //数据库添加新成员
                 saveNewProvince(province);
                 //添加到数据库的时候，才真正意义上需要“province”
@@ -165,17 +169,59 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onComplete() {
                 //完成后续事件
-
                 closeProgressDialog();
             }
         };
         RetrofitHelper.getInstance().getCityList(cityBeanObserver);
     }
 
+    private void getCityFromIp()
+    {
+        ip2CityBeanObserver = new Observer<Ip2CityBean>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                Log.i("IP反查","启动IP反查功能");
+            }
+
+            @Override
+            public void onNext(Ip2CityBean cityBean) {
+                Log.i("IP反查","获取到当前IP为" + cityBean.getCity());
+                //赋值带上当前IP字样，方便后续处理
+                //插入到最前面去
+                hotCitys.add(0,"(IP)" + cityBean.getCity());
+                //从此处赋值
+                ip2CityBean = cityBean;
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.i("IP反查","出错，显示报错为");
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onComplete() {
+                //完成的时候，向adapter发送公告，更新IP所在
+                Log.i("IP反查","IP反查成功，更新");
+                adapter.notifyDataSetChanged();
+            }
+        };
+        RetrofitHelper.getInstance().getIpFromCity(ip2CityBeanObserver);
+
+
+
+    }
+
+
+
+
     //retrofit订阅者模式
     private void getCityList() {
         //判断是否第一次获取，如果不是第一次，直接返回数据库信息
         //当且仅当第一次/主动刷新时，进行数据刷新
+        //IP获取每次都要获取，所以放在前面即可
+        getCityFromIp();
         if (getProvinceList().isEmpty())
             refreshCityList();
         else {
@@ -209,9 +255,18 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
         searchGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                city = hotCitys[position];
-//                获取省份
-                provice = GetProvice(city);
+                city = hotCitys.get(position);
+                //获取省份，由于开发时，未能考虑到两个接口获取的城市不一致，所以必须保留ip2City
+                if(city.contains("(IP)"))
+                {
+                    provice = ip2CityBean.getProvince();
+                    //去除无用的标识
+                    city = city.replace("(IP)","");
+                }
+                else
+                {
+                    provice = GetProvice(city);
+                }
                 String url = url1 + provice + url2 + city;
                 loadData(url);
             }
