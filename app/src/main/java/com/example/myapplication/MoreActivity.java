@@ -1,11 +1,15 @@
 package com.example.myapplication;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,9 +17,11 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.db.DBManager;
-
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import com.example.myapplication.db.DBManager;
 
 
 public class MoreActivity extends AppCompatActivity implements View.OnClickListener{
@@ -44,6 +50,38 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
         versionTv.setText("当前版本:    v"+versionName);
         setRGListener();
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//判断事件完成，就是选择完图片
+        SharedPreferences.Editor editor = pref.edit();
+        Intent intent = new Intent(MoreActivity.this,MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            Uri uri = data.getData();
+//文件指针
+            Cursor cursor = this.getContentResolver().query(uri, null, null,
+                    null, null);
+            cursor.moveToFirst();
+            //path就是用户选择文件的路径啦
+            // 至于参数为什么是1，这是我尝试的经验
+            // 拿到路径后你就可以调用那张图片显示给用户看或者做别的事
+            String path = cursor.getString(1);
+            //将路径
+            editor.putInt("bg",99);
+            editor.putString("path",path);
+            editor.commit();
+            startActivity(intent);
+        }
+        else
+        {
+            Toast.makeText(MoreActivity.this,"您未选择任何背景！",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+
 
     private void setRGListener() {
         /* 设置改变背景图片的单选按钮的监听*/
@@ -80,6 +118,26 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
                         editor.putInt("bg",2);
                         editor.commit();
                         break;
+                    case R.id.more_myself:
+                        //由于这个和另外几个的原理不同，不能startActivity在这里，否则就会出问题。
+                        //去寻找是否已经有了权限
+                       int a =  ContextCompat.checkSelfPermission(MoreActivity.this,Manifest.permission.READ_EXTERNAL_STORAGE);
+                            if(ContextCompat.checkSelfPermission(MoreActivity.this,Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED)
+                            {
+                                Intent myintent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                startActivityForResult(myintent, 1);
+                                return;
+                            }
+                            else
+                            {
+                                ActivityCompat.requestPermissions(MoreActivity.this,new String[]{
+                                        Manifest.permission.READ_EXTERNAL_STORAGE},1);
+                                return;
+                            }
+                            //Toast.makeText(MainActivity.this,"您申请了动态权限",Toast.LENGTH_SHORT).show();
+                            //自己选就不用估计上面bg是啥了
+                            //另外：这里的选取值要去上面进行处理
+
                 }
                 startActivity(intent);
             }

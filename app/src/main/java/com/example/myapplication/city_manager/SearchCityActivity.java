@@ -48,7 +48,6 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
     RecyclerView searchList;
     TextView searchTv;
     //没有找到合适的热门城市接口,默认改一下改成“第一个是IP定位，剩下的是写死的热门”
-    //添加IP对应的城市,使用栈结构，后进去的在前面，这样IP永远在前面
     List<String> hotCitys = new ArrayList<>();
     private ArrayAdapter adapter;
     String url1 = "https://wis.qq.com/weather/common?source=pc&weather_type=observe|index|rise|alarm|air|tips|forecast_24h&province=";
@@ -280,7 +279,14 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
                 city = searchEt.getText().toString();
                 if (!TextUtils.isEmpty(city)) {
 //                      判断是否能够找到这个城市
-                    provice = GetProvice(city);
+                    try {
+                        provice = GetProvice(city);
+                    }
+                    catch (Exception e)
+                    {
+                        Toast.makeText(this, "您的输入非法", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
                     String url = url1 + provice + url2 + city;
                     loadData(url);
                 } else {
