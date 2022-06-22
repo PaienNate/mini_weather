@@ -58,7 +58,10 @@ public class MyAppWidgetProvider extends AppWidgetProvider {
      */
     @Override
     public void onDeleted(Context context, int[] appWidgetIds) {
+        //回收无用的Service
         super.onDeleted(context, appWidgetIds);
+        Intent intent = new Intent(context, GetWeatherService.class);
+        context.stopService(intent);
     }
 
     /**

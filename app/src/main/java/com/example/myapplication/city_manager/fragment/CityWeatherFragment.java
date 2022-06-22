@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -52,7 +53,6 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
     private WeatherBean.DataBean.IndexBean index;
     private SharedPreferences pref;
     private int bgNum;
-
     //        换壁纸的函数
     public void exchangeBg(){
         pref = getActivity().getSharedPreferences("bg_pref", MODE_PRIVATE);
@@ -67,6 +67,22 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
             case 2:
                 outLayout.setBackgroundResource(R.mipmap.bg3);
                 break;
+            case 99:
+                //此时需要获取对应的path
+                String bg_path = pref.getString("path","default");
+                try {
+                    Drawable drawable = Drawable.createFromPath(bg_path);
+                    outLayout.setBackground(drawable);
+                    break;
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                    Toast.makeText(getActivity(), "加载壁纸失败，源文件可能已经被删除，挪动。", Toast.LENGTH_SHORT).show();
+                    outLayout.setBackgroundResource(R.mipmap.bg2);
+                    break;
+                }
+
         }
 
     }
@@ -77,7 +93,7 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         View view = inflater.inflate(R.layout.fragment_city_weather, container, false);
         //初始化View
         initView(view);
-        //根据设定调整北京图片
+        //根据设定调整背景图片
         exchangeBg();
 //        可以通过activity传值获取到当前fragment加载的是那个地方的省份和天气情况
         Bundle bundle = getArguments();
@@ -172,10 +188,11 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         String weather_code = observeBean.getWeather_code();
         if (getCurrentTime()){
             //然后获取weatherBean里的天气代码，拼凑名称
-            Toast.makeText(getActivity(),"晚上啦，早点休息哦~",Toast.LENGTH_SHORT).show();
+            //由于多次加载会导致输出大量无用的Toast，故不在此处提醒
+            //Toast.makeText(getActivity(),"晚上啦，早点休息哦~",Toast.LENGTH_SHORT).show();
             dayIv.setImageBitmap(getImageFromAssetsFile("night_" + weather_code + ".png"));
         }else {
-            Toast.makeText(getActivity(), "现在是白天哦，心情愉快~", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), "现在是白天哦，心情愉快~", Toast.LENGTH_SHORT).show();
             dayIv.setImageBitmap(getImageFromAssetsFile("day_" + weather_code + ".png"));
 
         }

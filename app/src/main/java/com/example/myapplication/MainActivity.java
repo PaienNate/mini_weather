@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -100,6 +102,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case 2:
                 outLayout.setBackgroundResource(R.mipmap.bg3);
                 break;
+            case 99:
+                //此时需要获取对应的path
+                String bg_path = pref.getString("path","default");
+                try {
+                    Drawable drawable = Drawable.createFromPath(bg_path);
+                    outLayout.setBackground(drawable);
+                    break;
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                    Toast.makeText(this, "加载壁纸失败，源文件可能已经被删除，挪动。", Toast.LENGTH_SHORT).show();
+                    outLayout.setBackgroundResource(R.mipmap.bg2);
+                    break;
+                }
+
         }
 
     }

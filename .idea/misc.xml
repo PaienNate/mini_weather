@@ -13,6 +13,7 @@
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/drawable/dot_selector.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/drawable/welcomimg_bg.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/activity_city_manager.xml" value="0.2" />
+        <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/activity_covid.xml" value="0.264" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/activity_covid19.xml" value="0.152" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/activity_delete_city.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/activity_main.xml" value="0.18854166666666666" />
@@ -22,12 +23,16 @@
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/activity_widget.xml" value="0.12335359675785208" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/content_covid19.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/fragment_city_weather.xml" value="0.1" />
+        <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/fragment_first.xml" value="0.15625" />
+        <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/fragment_item.xml" value="0.15625" />
+        <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/fragment_item_list.xml" value="0.15625" />
+        <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/fragment_second.xml" value="0.11548913043478261" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/item_city.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/item_city_manager.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/item_citylist.xml" value="0.176" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/item_deletecity.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/item_grid.xml" value="0.4" />
-        <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/item_hotcity.xml" value="0.1" />
+        <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/item_hotcity.xml" value="0.264" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/item_main_center.xml" value="0.264" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/layout_widget.xml" value="0.264" />
         <entry key="..\:/Users/Administrator/Desktop/weather_forecast_app-master/Application-master/app/src/main/res/layout/weather_app_widget.xml" value="0.1" />
