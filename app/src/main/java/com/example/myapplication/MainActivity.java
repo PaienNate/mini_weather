@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imgList = new ArrayList<>();
         //初始化
         if (cityList.size()==0) {
-            cityList.add("北京市");
+            //cityList.add("北京");
 //            cityList.add("上海");
 //            cityList.add("广东省 广州");
 //            cityList.add("广东省 深圳");
@@ -155,7 +155,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             pointLayout.addView(pIv);
         }
         //最后一个被选中
-        imgList.get(imgList.size()-1).setImageResource(R.mipmap.a2);
+        if(cityList.size()!=0)
+        {
+            imgList.get(imgList.size()-1).setImageResource(R.mipmap.a2);
+        }
     }
 
     private void initPager() {
