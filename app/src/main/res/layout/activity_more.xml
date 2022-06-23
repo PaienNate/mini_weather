@@ -41,12 +41,13 @@
         android:layout_below="@id/more_line1"
         android:drawablePadding="20dp"
         android:padding="10dp"/>
+
     <ImageView
         android:id="@+id/more_line2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@id/more_tv_exchangebg"
-        android:background="#DCDCDC"/>
+        android:background="#DCDCDC" />
     <RadioGroup
         android:id="@+id/more_rg"
         android:layout_width="match_parent"
