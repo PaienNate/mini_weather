@@ -273,7 +273,12 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
 
     }
 
-//    时间格式化
+    /**
+     * 时间格式化函数
+     * @param update_time 更新时间
+     * @return 格式化的时间
+     * @throws ParseException
+     */
     private String changeTime(String update_time) throws ParseException {
         SimpleDateFormat sf1 = new SimpleDateFormat("yyyyMMddHHmm");
         SimpleDateFormat sf2 =new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -303,6 +308,7 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
 
         outLayout = view.findViewById(R.id.out_layout);
         umbrellaTv = view.findViewById(R.id.frag_index_tv_umbrella);
+
         //添加疫情按钮
         yiqing = view.findViewById(R.id.kangyi_image);
         //添加疫情按钮的监听

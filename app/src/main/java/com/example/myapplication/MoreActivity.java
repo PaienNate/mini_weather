@@ -55,29 +55,36 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//判断事件完成，就是选择完图片
+        //判断事件完成，就是选择完图片
+        //原本的换壁纸，跳转到主页面
         SharedPreferences.Editor editor = pref.edit();
         Intent intent = new Intent(MoreActivity.this,MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+
         super.onActivityResult(requestCode, resultCode, data);
+        //如果选中一张图，那么Activity返回OK
         if (resultCode == Activity.RESULT_OK) {
+            //根据网上的获取方法获取到图片路径
             Uri uri = data.getData();
-//文件指针
             Cursor cursor = this.getContentResolver().query(uri, null, null,
                     null, null);
             cursor.moveToFirst();
+            //CSDN：
             //path就是用户选择文件的路径啦
             // 至于参数为什么是1，这是我尝试的经验
             // 拿到路径后你就可以调用那张图片显示给用户看或者做别的事
             String path = cursor.getString(1);
-            //将路径
+            //图片的序号
             editor.putInt("bg",99);
+            //图片的地址
             editor.putString("path",path);
             editor.commit();
+            //Intent带参数启动MainActivity
             startActivity(intent);
         }
         else
         {
+            //没有选择图的情况下
             Toast.makeText(MoreActivity.this,"您未选择任何背景！",Toast.LENGTH_SHORT).show();
         }
     }
@@ -93,6 +100,7 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
                 SharedPreferences.Editor editor = pref.edit();
                 Intent intent = new Intent(MoreActivity.this,MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                //根据选中的ID执行：
                 switch (checkedId) {
                     case R.id.more_rb_green:
                         if (bg==0) {
@@ -118,18 +126,27 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
                         editor.putInt("bg",2);
                         editor.commit();
                         break;
+                        //增加的项
                     case R.id.more_myself:
+                        //用户可以换不同的壁纸，所以没有当前壁纸检测
                         //由于这个和另外几个的原理不同，不能startActivity在这里，否则就会出问题。
                         //去寻找是否已经有了权限
                        int a =  ContextCompat.checkSelfPermission(MoreActivity.this,Manifest.permission.READ_EXTERNAL_STORAGE);
-                            if(ContextCompat.checkSelfPermission(MoreActivity.this,Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED)
+                       //判断是否有读的权限，PERMISSION_GRANTED有权限，否则就是没有
+                       // 请求权限的第一步是声明这个程序要能请求该权限，定义在AndroidManifest.xml内
+                       if(ContextCompat.checkSelfPermission(MoreActivity.this,Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED)
                             {
+                                //Intent调用选择器（只能选择图片）
+                                //选择图片要调用外置存储，外置存储需要请求权限
                                 Intent myintent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                //请求需要得到返回值，请求的Code = 1
+                                //startActivityForResult的返回值需要在Activity内重写onActivityResult来接收传值
                                 startActivityForResult(myintent, 1);
                                 return;
                             }
                             else
                             {
+                                //如果没有权限，请求对应的权限
                                 ActivityCompat.requestPermissions(MoreActivity.this,new String[]{
                                         Manifest.permission.READ_EXTERNAL_STORAGE},1);
                                 return;

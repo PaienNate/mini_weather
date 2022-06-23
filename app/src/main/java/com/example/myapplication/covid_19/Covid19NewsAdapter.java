@@ -25,6 +25,7 @@ public class Covid19NewsAdapter extends BaseAdapter {
 
     List<CovidNewsBean.DataBean.ItemsBean> itemsBeanList;
 
+    //专门写的Set方法
     public void setItemsBeanList(List<CovidNewsBean.DataBean.ItemsBean> itemsBeanList) {
         this.itemsBeanList = itemsBeanList;
     }
@@ -38,17 +39,16 @@ public class Covid19NewsAdapter extends BaseAdapter {
     {
         Drawable drawable = null;
         try {
-            // 可以在这里通过文件名来判断，是否本地有此图片
             drawable = Drawable.createFromStream(
                     new URL(imageUrl).openStream(), "image.jpg");
         } catch (IOException e) {
             Log.d("test", e.getMessage());
         }
-        if (drawable == null) {
-           // Log.d("test", "null drawable");
-        } else {
-           // Log.d("test", "not null drawable");
-        }
+//        if (drawable == null) {
+//           // Log.d("test", "null drawable");
+//        } else {
+//           // Log.d("test", "not null drawable");
+//        }
 
         return drawable ;
     }
@@ -71,18 +71,22 @@ public class Covid19NewsAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Covid19NewsAdapter.ViewHolder holder = null;
+        //网上教的，可以复用
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_covid,null);
             holder = new Covid19NewsAdapter.ViewHolder(convertView);
             convertView.setTag(holder);
+            //初始化
             String subao_title = itemsBeanList.get(position).getTitle();
             String subao_pic = itemsBeanList.get(position).getShortcut();
             String subao_source = itemsBeanList.get(position).getSrcfrom();
             String subao_url = itemsBeanList.get(position).getNewsUrl();
             ViewHolder finalHolder = holder;
+            //创建新线程去给图片赋值
             new Thread(new Runnable(){
                 @Override
                 public void run() {
+                    //用drawable的获取方式读取图片链接为drawable对象
                     Drawable drawable = loadImageFromNetwork(subao_pic);
                     // post() 特别关键，就是到UI主线程去更新图片
                     finalHolder.iv.post(new Runnable(){
@@ -96,19 +100,21 @@ public class Covid19NewsAdapter extends BaseAdapter {
                         }}) ;
                 }
             }).start();
+            //设置标题，来源
             holder.tv.setText(subao_title);
             holder.source.setText(subao_source);
-            //绑定点击事件
+            //绑定点击事件写在convertView == null里，点击的行为逻辑就正常了
             holder.relative.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Log.i("点击事件","开始点击事件");
+                    //把链接转成uri
                     Uri uri = Uri.parse(subao_url);
+                    //通过ACTION_VIEW的方式，打开浏览器去查看这个页面
                     Intent intentWeb = new Intent(Intent.ACTION_VIEW, uri);
-                    //Calling startActivity() from outside of an Activity
-                    // context requires the FLAG_ACTIVITY_NEW_TASK flag.
-                    // Is this really what you want? Yes!
+                    //因为不是在Activity内请求的，需要增加FLAG_ACTIVITY_NEW_TASK这个Flag
                     intentWeb.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    //启动Activity
                     context.startActivity(intentWeb);
                 }
             });

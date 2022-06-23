@@ -104,16 +104,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case 2:
                 outLayout.setBackgroundResource(R.mipmap.bg3);
                 break;
+                //自己设置图片的情况下
             case 99:
-                //此时需要获取对应的path
+                //此时需要获取对应的path的路径
                 String bg_path = pref.getString("path","default");
                 try {
+                    //尝试根据这个路径，用Drawable的方法，创建一个Drawable对象
                     Drawable drawable = Drawable.createFromPath(bg_path);
+                    //RelativeLayout 有一个方法是把背景设置成drawable对象
                     outLayout.setBackground(drawable);
+                    //设置完成
                     break;
                 }
                 catch (Exception e)
                 {
+                    //如果上面失败了，就设置默认的
                     e.printStackTrace();
                     Toast.makeText(this, "加载壁纸失败，源文件可能已经被删除，挪动。", Toast.LENGTH_SHORT).show();
                     outLayout.setBackgroundResource(R.mipmap.bg2);

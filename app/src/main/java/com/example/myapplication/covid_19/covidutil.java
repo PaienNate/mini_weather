@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class covidutil {
  //对智障的腾讯接口进行修正
-
+ //https://news.qq.com/zt2020/page/feiyan.htm#/area?style=1&pool=cd&channelId=
  private static final Map<String, String> myMap = new HashMap<String, String>();
  //该列表抓包于腾讯的接口
  //并不清楚为什么会成这个样子。
@@ -46,9 +46,18 @@ public class covidutil {
   myMap.put("澳门", "macau");
  }
 
+ /**
+  * 通过省名，获取到对应的新闻接口的province_code
+  * @param provinceName 省名
+  * @return 新闻接口专用省字符串
+  */
  public static String getTencentNewsProvinceFromCity(String provinceName) {
+  //遍历整个Map的键
   for (String key : myMap.keySet()) {
+   //如果说省名里包含这个键
+   //北京市 包含 北京
    if (provinceName.contains(key)) {
+    //返回对应的新闻接口专用省字符串
     return myMap.get(key);
    }
   }

@@ -231,31 +231,6 @@ public static List<CityBean.Province.City> loadSearchCities(String cityName)
         return null;
     }
 
-
-
-
-    /**
-     * 从数据库读取某省下所有的城市信息。
-     */
-    public static List<CityBean.Province.City> loadCities(int provinceId) {
-        List<CityBean.Province.City> list = new ArrayList<CityBean.Province.City>();
-        Cursor cursor = database.query("City", null, "province_id = ?",
-                new String[] { String.valueOf(provinceId) }, null, null, null);
-        if (cursor.moveToFirst()) {
-            do {
-                CityBean.Province.City city = new CityBean.Province.City();
-                city.setId(cursor.getInt(cursor.getColumnIndex("id")));
-                city.setName(cursor.getString(cursor
-                        .getColumnIndex("city_name")));
-                city.setCode(cursor.getString(cursor
-                        .getColumnIndex("city_code")));
-                city.setProvinceId(provinceId);
-                list.add(city);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return list;
-    }
     /* 删除表当中所有的数据信息*/
     public static void deleteAllCity(){
         String sql = "delete from Province";
