@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.myapplication.bean.Ip2CityBean;
 import com.example.myapplication.city_manager.CityManagerActivity;
 import com.example.myapplication.city_manager.fragment.CityFragmentPagerAdapter;
 import com.example.myapplication.city_manager.fragment.CityWeatherFragment;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CityFragmentPagerAdapter adapter;
     private SharedPreferences pref;
     private int bgNum;
+    private Ip2CityBean ip2CityBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

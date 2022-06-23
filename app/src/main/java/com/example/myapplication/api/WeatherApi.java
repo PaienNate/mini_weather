@@ -6,7 +6,7 @@ import com.example.myapplication.bean.Ip2CityBean;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 
-public interface WeatherService {
+public interface WeatherApi {
     // https://r.inews.qq.com/api/ip2city?otype=jsonp
     String BASE_URL = "https://r.inews.qq.com/api/";
     //根据IP反查城市，参数写死即可

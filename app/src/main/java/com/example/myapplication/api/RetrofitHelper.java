@@ -27,8 +27,8 @@ public class RetrofitHelper {
     //用于免费接口的秘钥
     public static String app_id = "wpqgjkqkqnmqt3gt";
     public static String app_secret = "Q1NqMnl6ZlZyRkNESUJDMWZ0ZjZJdz09";
-    private CityService cityService;
-    private WeatherService weatherService;
+    private CityApi cityApi;
+    private WeatherApi weatherApi;
     OkHttpClient.Builder builder;
 
     /**
@@ -53,23 +53,23 @@ public class RetrofitHelper {
                 .client(builder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl(CityService.BASE_URL)
+                .baseUrl(CityApi.BASE_URL)
                 .build();
         ip2CityRetrofit = new Retrofit.Builder()
                 .client(builder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl(WeatherService.BASE_URL)
+                .baseUrl(WeatherApi.BASE_URL)
                 .build();
         //这里创建了对应的retrofit数据，作为services
-        cityService = weatherRetrofit.create(CityService.class);
-        weatherService = ip2CityRetrofit.create(WeatherService.class);
+        cityApi = weatherRetrofit.create(CityApi.class);
+        weatherApi = ip2CityRetrofit.create(WeatherApi.class);
     }
     //获取IP所在的城市
     public void getIpFromCity(Observer<Ip2CityBean> observer)
     {
         //因为本来它就是返回一个ip2CityBean，所以无所谓什么map和flatmap去展平它了
-        weatherService.getIpWithCity()                //指定处理的事件流在哪个线程中执行
+        weatherApi.getIpWithCity()                //指定处理的事件流在哪个线程中执行
                 .subscribeOn(Schedulers.io())
                 //指定最后的结果处于哪个线程中
                 .observeOn(AndroidSchedulers.mainThread())
@@ -80,7 +80,7 @@ public class RetrofitHelper {
     //获取城市信息 - 底层方法
     public void getCityList(Observer<CityBean.Province> observers)
     {//appid,secret
-        cityService.getWebProvinceList(app_id,app_secret)
+        cityApi.getWebProvinceList(app_id,app_secret)
                 .map(new Function<CityBean, List<CityBean.Province>>() {
 
                     @Override

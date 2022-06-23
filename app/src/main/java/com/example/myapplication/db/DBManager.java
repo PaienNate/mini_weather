@@ -161,7 +161,22 @@ public class DBManager {
         }
         return "ERROR";
     }
+/**
+ * 疫情-通过市获取省的ID，用于传值
+ */
+public static String getProvinceCodeFromCityCode(String code)
+{
+    Cursor cursor = database.query("City",null,"city_code = ?",new String[]{code},null,null,null);
+    if(cursor.moveToFirst())
+    {
+        do {
+            return String.valueOf(cursor.getInt(cursor.getColumnIndex("province_id")));
+        } while (cursor.moveToNext());
+    }
+    //否则返回默认
+    return "110000";
 
+}
 
 
 
