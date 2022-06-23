@@ -3,7 +3,11 @@ package com.example.myapplication.city_manager.fragment;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import static com.example.myapplication.db.DBManager.FindProvince;
+import static com.example.myapplication.db.DBManager.getProvince;
+
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -25,15 +29,16 @@ import androidx.fragment.app.Fragment;
 import com.example.myapplication.R;
 import com.example.myapplication.base.BaseFragment;
 import com.example.myapplication.bean.WeatherBean;
+import com.example.myapplication.covid_19.Covid19Activity;
 import com.example.myapplication.db.DBManager;
 import com.example.myapplication.service.GetWeatherService;
 import com.google.gson.Gson;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 
 /**
@@ -49,6 +54,8 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
     String url2 = "&city=";
     String city;
     String provice;
+    //添加一个疫情的按钮
+    ImageView yiqing;
 
     private WeatherBean.DataBean.IndexBean index;
     private SharedPreferences pref;
@@ -101,13 +108,22 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         String provice_city = bundle.getString("city");
 //        获取省份
         if(provice_city.split(" ").length>1)
-        {   provice =provice_city.split(" ")[0];
+        {
+            provice =provice_city.split(" ")[0];
             city = provice_city.split(" ")[1];
         }
         else
         {
             city = provice_city.split(" ")[0];
-            provice = provice_city.split(" ")[0];
+            //借助city反查province
+            try {
+                provice = getProvince(Objects.requireNonNull(FindProvince(city)).getProvinceId());
+            }
+            catch (Exception e)
+            {
+                provice = city;
+            }
+
         }
         String url = url1+provice+url2+city;
 //          调用父类获取数据的方法
@@ -160,20 +176,22 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
 
     private Bitmap getImageFromAssetsFile(String fileName)
     {
-        Bitmap image = null;
-        AssetManager am = getResources().getAssets();
+
         try
         {
+            Bitmap image = null;
+            AssetManager am = getResources().getAssets();
             InputStream is = am.open(fileName);
             image = BitmapFactory.decodeStream(is);
             is.close();
+            return image;
         }
-        catch (IOException e)
+        catch (Exception e)
         {
             e.printStackTrace();
         }
+        return null;
 
-        return image;
 
     }
     private void parseShowData(String result) throws ParseException {
@@ -285,6 +303,20 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
 
         outLayout = view.findViewById(R.id.out_layout);
         umbrellaTv = view.findViewById(R.id.frag_index_tv_umbrella);
+        //添加疫情按钮
+        yiqing = view.findViewById(R.id.kangyi_image);
+        //添加疫情按钮的监听
+        yiqing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Covid19Activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("city",city);
+                intent.putExtra("province",provice);
+                startActivity(intent);
+            }
+        });
+
 //        设置点击事件的监听
         clothIndexTv.setOnClickListener(this);
         carIndexTv.setOnClickListener(this);

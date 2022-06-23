@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="fill_parent"
     android:background="@mipmap/bg_feiyan"
     android:id="@+id/out_layout">
 
@@ -9,7 +9,7 @@
         android:id="@+id/covid_layout"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="fill_parent" >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -169,11 +169,37 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#DCDCDC"/>
-        <ListView
+        <com.example.myapplication.covid_19.NewListView
             android:id="@+id/subao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@null"></ListView>
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="1dp"
+            android:divider="@null"
+            android:visibility="gone">
+        </com.example.myapplication.covid_19.NewListView>
+            <RelativeLayout
+                android:id="@+id/subao_empty_view"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="#fff">
+
+                <ProgressBar
+                    android:id="@+id/widget_progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_below="@id/widget_progressBar"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="正在加载新闻信息，请稍后……" />
+            </RelativeLayout>
+
+
     </LinearLayout>
 
 </ScrollView>

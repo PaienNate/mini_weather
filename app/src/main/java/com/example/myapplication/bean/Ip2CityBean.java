@@ -2,7 +2,9 @@ package com.example.myapplication.bean;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Ip2CityBean {
+import java.io.Serializable;
+//想被PutExtra传走，需要实现序列化接口
+public class Ip2CityBean implements Serializable {
     /**
      * ret
      */

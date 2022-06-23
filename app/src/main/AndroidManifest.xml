@@ -56,6 +56,7 @@
         <activity android:name=".city_manager.CityManagerActivity" />
         <activity android:name=".city_manager.SearchCityActivity" />
         <activity android:name=".city_manager.DeleteCityActivity" />
+        <activity android:name=".covid_19.Covid19Activity" />
         <activity android:name=".MoreActivity" />
     </application>
 
