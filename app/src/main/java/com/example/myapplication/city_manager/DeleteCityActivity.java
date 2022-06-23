@@ -32,8 +32,8 @@ public class DeleteCityActivity extends AppCompatActivity implements View.OnClic
         deleteLv = findViewById(R.id.delete_lv);
 
         mDatas = DBManager.queryAllCityName();
-
         deleteCitys = new ArrayList<>();
+
 //        设置点击监听事件
         errorIv.setOnClickListener(this);
         rightIv.setOnClickListener(this);
@@ -55,6 +55,7 @@ public class DeleteCityActivity extends AppCompatActivity implements View.OnClic
                             }
                         });
                 builder.setNegativeButton("取消",null);
+//                取消对话框，传入空
                 builder.create().show();
                 break;
             case R.id.delete_iv_right:
