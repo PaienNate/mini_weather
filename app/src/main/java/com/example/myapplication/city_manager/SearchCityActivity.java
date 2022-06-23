@@ -303,6 +303,7 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
             Intent intent = new Intent(this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             city = provice + " " + city;
+            Log.i("当前城市",city);
             intent.putExtra("city", city);
             startActivity(intent);
         } else {

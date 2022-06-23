@@ -81,7 +81,7 @@ public class UpdateWidget {
 
     private void showGridInfo(int appWidgetId) {
         //由于Grid是一个集合，我们必须得为他绑定Service，否则无法修改其中的内容
-        //这也是开发部分的难点，嵌套之后我就不会了——Pinenut
+        //这也是开发部分的难点
         //绑定Intent为Grid集合使用的Service
         Intent intent = new Intent(context, WidgetGridService.class);
         //提供给它一个额外的APPWIDGET_ID参数，以及总列表

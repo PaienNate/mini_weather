@@ -30,7 +30,7 @@ import java.util.List;
 //首先需要扩写RemoteViewsService
 public class WidgetGridService extends RemoteViewsService {
     //重写获取ViewFactory方法，让它获取的是下面我们自定义的这个类
-    String testpic = "https://dss2.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/weather/icons2/a1.png";
+    //String testpic = "https://dss2.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/weather/icons2/a1.png";
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
         return new GridRemoteViewFactory(this, intent);
@@ -81,14 +81,14 @@ public class WidgetGridService extends RemoteViewsService {
         //一般来说，写成和原本一致即可。
         @Override
         public void onDataSetChanged() {
-            //这里只能去数据库要数据
-            Log.i("模拟请求检测","检测到重新获取数据要求。");
+            //去数据库要数据
+            Log.i("请求检测","检测到重新获取数据要求。");
             weatherList = queryAllInfo();
         }
 
         /**
          * @author David  created at 2016/8/11 17:42
-         * 销毁时，情况数据源
+         * 销毁时，清空数据源
          */
         @Override
         public void onDestroy() {
@@ -147,9 +147,7 @@ public class WidgetGridService extends RemoteViewsService {
             {
                 e.printStackTrace();
             }
-
             return image;
-
         }
 
 
@@ -165,7 +163,6 @@ public class WidgetGridService extends RemoteViewsService {
             if(weatherList!=null)
             {
                 //第一步：获取必要信息
-
                 //转换GSON为取出信息铺路
                 WeatherBean weatherBean = new Gson().fromJson(weatherList.get(position).getContent(), WeatherBean.class);
                 //取出对应的信息

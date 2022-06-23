@@ -145,7 +145,6 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
 //            更新数据库失败，说明没有这条城市信息，增加这个城市记录
             DBManager.addCityInfo(city,result);
             //小组件：更新后，提示小组件跟着更新
-
         }
         GetWeatherService.notifyDatabaseUpdate();
     }
