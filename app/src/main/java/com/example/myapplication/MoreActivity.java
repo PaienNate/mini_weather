@@ -39,12 +39,15 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
         cacheTv = findViewById(R.id.more_tv_cache);
         versionTv = findViewById(R.id.more_tv_version);
         shareTv = findViewById(R.id.more_tv_share);
+
         backIv = findViewById(R.id.more_iv_back);
         exbgRg = findViewById(R.id.more_rg);
+
         bgTv.setOnClickListener(this);
         cacheTv.setOnClickListener(this);
         shareTv.setOnClickListener(this);
         backIv.setOnClickListener(this);
+
         pref = getSharedPreferences("bg_pref", MODE_PRIVATE);
         String versionName = getVersionName();
         versionTv.setText("当前版本:    v"+versionName);
@@ -78,9 +81,6 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(MoreActivity.this,"您未选择任何背景！",Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
 
 
     private void setRGListener() {
@@ -155,7 +155,7 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
                 clearCache();
                 break;
             case R.id.more_tv_share:
-                shareSoftwareMsg("说天气app是一款超萌超可爱的天气预报软件，画面简约，播报天气情况非常精准，快来下载吧！");
+                shareSoftwareMsg("mini天气系统app是一款超萌超可爱的天气预报软件，画面简约，播报天气情况非常精准，快来下载吧！");
                 break;
             case R.id.more_tv_exchangebg:
                 if (exbgRg.getVisibility() == View.VISIBLE) {
@@ -172,7 +172,7 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT,s);
-        startActivity(Intent.createChooser(intent,"说天气"));
+        startActivity(Intent.createChooser(intent,"mini天气系统"));
     }
 
     private void clearCache() {
