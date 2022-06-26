@@ -24,9 +24,9 @@ public class RetrofitHelper {
     private static final int DEFAULT_TIMEOUT = 10;
     private Retrofit ip2CityRetrofit;
     private Retrofit weatherRetrofit;
-    //用于免费接口的秘钥
-    public static String app_id = "wpqgjkqkqnmqt3gt";
-    public static String app_secret = "Q1NqMnl6ZlZyRkNESUJDMWZ0ZjZJdz09";
+    //用于免费接口的秘钥，记得自己申请
+    public static String app_id = "zijigai";
+    public static String app_secret = "zijigai";
     private CityApi cityApi;
     private WeatherApi weatherApi;
     OkHttpClient.Builder builder;
