@@ -80,6 +80,7 @@ public class RetrofitHelper {
     //获取城市信息 - 底层方法
     public void getCityList(Observer<CityBean.Province> observers)
     {//appid,secret
+        // 需要到这里获取：https://www.mxnzp.com/doc/detail?id=8
         cityApi.getWebProvinceList(app_id,app_secret)
                 .map(new Function<CityBean, List<CityBean.Province>>() {
 
