@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 
 public class Test {
     public static void main(String arg[]) throws ParseException {
-        String str="202009222245";
+        String str="202206222245";
         SimpleDateFormat sf1 = new SimpleDateFormat("yyyyMMddHHmm");
         SimpleDateFormat sf2 =new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String sfstr = "";

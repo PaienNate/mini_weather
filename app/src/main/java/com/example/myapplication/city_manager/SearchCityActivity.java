@@ -53,7 +53,7 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
     String url1 = "https://wis.qq.com/weather/common?source=pc&weather_type=observe|index|rise|alarm|air|tips|forecast_24h&province=";
     String url2 = "&city=";
     String city;
-    String provice;
+    String province;
     List<String> stringList = new ArrayList<>();
     SearchListAdapter searchListAdapter;
     private List<CityBean.Province.City> cityBeanList = new ArrayList<>();
@@ -212,9 +212,6 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
 
     }
 
-
-
-
     //retrofit订阅者模式
     private void getCityList() {
         //判断是否第一次获取，如果不是第一次，直接返回数据库信息
@@ -258,15 +255,15 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
                 //获取省份，由于开发时，未能考虑到两个接口获取的城市不一致，所以必须保留ip2City
                 if(city.contains("(IP)"))
                 {
-                    provice = ip2CityBean.getProvince();
+                    province = ip2CityBean.getProvince();
                     //去除无用的标识
                     city = city.replace("(IP)","");
                 }
                 else
                 {
-                    provice = GetProvice(city);
+                    province = GetProvice(city);
                 }
-                String url = url1 + provice + url2 + city;
+                String url = url1 + province + url2 + city;
                 loadData(url);
             }
         });
@@ -280,14 +277,14 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
                 if (!TextUtils.isEmpty(city)) {
 //                      判断是否能够找到这个城市
                     try {
-                        provice = GetProvice(city);
+                        province = GetProvice(city);
                     }
                     catch (Exception e)
                     {
                         Toast.makeText(this, "您的输入非法", Toast.LENGTH_SHORT).show();
                         break;
                     }
-                    String url = url1 + provice + url2 + city;
+                    String url = url1 + province + url2 + city;
                     loadData(url);
                 } else {
                     Toast.makeText(this, "输入内容不能为空！", Toast.LENGTH_SHORT).show();
@@ -299,10 +296,11 @@ public class SearchCityActivity extends BaseActivity implements View.OnClickList
     @Override
     public void onSuccess(String result) {
         WeatherBean weatherBean = new Gson().fromJson(result, WeatherBean.class);
+        //传"可用的city和province"过去即可，加入数据库和我无关
         if (weatherBean.getData().getIndex().getClothes() != null) {
             Intent intent = new Intent(this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            city = provice + " " + city;
+            city = province + " " + city;
             Log.i("当前城市",city);
             intent.putExtra("city", city);
             startActivity(intent);

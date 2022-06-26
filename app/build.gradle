@@ -1,6 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
     compileSdkVersion 30
     defaultConfig {
         applicationId "com.example.myapplication"
@@ -9,6 +13,13 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        android.applicationVariants.all {
+            variant ->
+                variant.outputs.all {
+                    // 此处指定生成的apk文件名
+                    outputFileName = "SecTest.apk"
+                }
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

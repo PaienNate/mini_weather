@@ -211,7 +211,6 @@ public class CityWeatherFragment extends BaseFragment implements View.OnClickLis
         }else {
             //Toast.makeText(getActivity(), "现在是白天哦，心情愉快~", Toast.LENGTH_SHORT).show();
             dayIv.setImageBitmap(getImageFromAssetsFile("day_" + weather_code + ".png"));
-
         }
         //dayIv
 //        设置TextView

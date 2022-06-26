@@ -65,21 +65,5 @@
         android:layout_marginBottom="34dp"
         android:text="TextView" />
 
-    <!--    <ImageView-->
-<!--        android:id="@+id/item_image"-->
-<!--        android:layout_width="106dp"-->
-<!--        android:layout_height="102dp"-->
-<!--        android:layout_alignStart="@+id/item_text"-->
-<!--        android:layout_alignTop="@+id/item_text"-->
-<!--        android:layout_alignEnd="@+id/item_text"-->
-<!--        android:layout_alignBottom="@+id/item_text"-->
-<!--        android:layout_marginStart="161dp"-->
-<!--        android:layout_marginTop="14dp"-->
-<!--        android:layout_marginEnd="12dp"-->
-<!--        android:layout_marginBottom="164dp"-->
-<!--        android:src="@drawable/bg_line"-->
-<!--        android:scaleType="centerCrop" />-->
-
-
 </RelativeLayout>
 

@@ -50,7 +50,6 @@ public class WidgetGridService extends RemoteViewsService {
         }
 
         /**
-         * @author David  created at 2016/8/11 17:41
          * 首次执行，初始化数据时执行onCreate();数据是从数据库里拿的。
          */
         //首次执行的时候从数据库里取出数据。
@@ -74,7 +73,6 @@ public class WidgetGridService extends RemoteViewsService {
         }
 
         /**
-         * @author David  created at 2016/8/11 17:41
          * 当数据源发生变化时，AppWidgetManager调用了 notifyAppWidgetViewDataChanged();方法时执行
          */
         //数据源发生变化的时候，就是AppWidgetManager调用方法告知的时候，需要执行这个函数
@@ -87,7 +85,6 @@ public class WidgetGridService extends RemoteViewsService {
         }
 
         /**
-         * @author David  created at 2016/8/11 17:42
          * 销毁时，清空数据源
          */
         @Override
@@ -96,7 +93,6 @@ public class WidgetGridService extends RemoteViewsService {
         }
 
         /**
-         * @author David  created at 2016/8/11 17:43
          * 返回Gridview的Item条目数
          */
         @Override
@@ -150,12 +146,6 @@ public class WidgetGridService extends RemoteViewsService {
             return image;
         }
 
-
-
-        /**
-         * @author David  created at 2016/8/11 17:43
-         * 给Gridview设置数据
-         */
         //从里面取出数据后，将数据设置给GridView集合，此时数据就安全到达了。
         @Override
         public RemoteViews getViewAt(int position) {
@@ -193,7 +183,6 @@ public class WidgetGridService extends RemoteViewsService {
         }
 
         /**
-         * @author David  created at 2016/8/11 17:46
          * 无特殊要求，返回的View类型数 ==1；
          */
         @Override
@@ -202,7 +191,6 @@ public class WidgetGridService extends RemoteViewsService {
         }
 
         /**
-         * @author David  created at 2016/8/11 17:47
          * 返回item的id
          */
         @Override
